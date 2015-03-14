@@ -1,8 +1,8 @@
 <?php
 
-    $rcpsObj = new Recipes();
-    $recipes = $rcpsObj->all();
-    $rcpLinks = array_map("makeRecipeLink", $recipes);
+$rcpsObj = new Recipes();
+$recipes = $rcpsObj->all();
+$rcpLinks = array_map("makeRecipeLink", $recipes);
 
 ?>
 <html>
@@ -14,7 +14,7 @@
 </head>
 <body>
 <div id="mainContent">
-<div class="navbar"><?php echo $pgObj->navbar; ?></div>
+<div class="breadcrumbs"><?php echo $pgObj->breadcrumbs; ?></div>
 <div class="well">
 <a href="/recipe.php/add/">add a recipe</a>
 <hr>
@@ -35,4 +35,3 @@ function makeRecipeLink($rcp) {
 };
 
 ?>
-

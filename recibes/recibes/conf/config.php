@@ -6,7 +6,5 @@ $conf->db_user = "root";
 $conf->db_pswd = "root"; 
 $conf->db_name = "recibes";
 
-$conf->server = $_SERVER;
-
 ?>
 

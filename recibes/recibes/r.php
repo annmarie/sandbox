@@ -1,35 +1,39 @@
-<?php
+<html>
+<body>
+<form action='/api.php/recipe/add/' enctype='application/x-www-form-urlencoded' method='post'>
+<div> <input type="input" size="75" name="headline" placeholder="Name it!"> </div>
+<div> <input type="input" size="75" name="ingredient[]" placeholder="add ingredient to it!"> </div>
+<div> <input type="input" size="75" name="ingredient[]" placeholder="add ingredient to it!"> </div>
+<div> <input type="input" size="75" name="tag[]" placeholder="tag it!"> </div>
+<div> <input type="input" size="75" name="tag[]" placeholder="tag it!"> </div>
+<input type="submit" value="submit">
+</form>
+</body>
+</html>
 
-$BASEURL = "http://recibes-vagrant.local/";
+
+<?php
+exit();
+include('../sdk/RecibesApi.php');
+
+$baseurl = "http://recibes-vagrant.local/";
+$rcpAPI = new Recibes\ApiCalls($baseurl);
 
 $datalst = array();
 $datalst[] = array( 'headline' => 'apple pie', 
+                    'body' => "bla bla bla ... then you have apple pie",
                     'ingredient' => array('apple'), 
                     'tag'=> array('bob', 'july'));
-$datalst[] = array( 'headline' => 'blueberry pie', 
-                    'ingredient' => array('blueberries'), 
+$datalst[] = array( 'headline' => 'blueberry cake', 
+                    'body' => "bla bla bla ... then you have blueberry cake",
+                    'ingredient' => array('blueberries', 'flour'), 
                     'tag'=> array('dig', 'july'));
 
-$results = array_map("addRecord", $datalst);
+$results = array_map(array($rcpAPI, "addIt"), $datalst);
 
 print_r($results);
 
 exit();
-
-function addRecord($data) {
-    global $BASEURL;
-    $url = rtrim($BASEURL, "/") . '/api.php/recipe/add/';
-    $options = array(
-        'http' => array(
-            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-            'method'  => 'POST',
-            'content' => http_build_query($data),
-        ),
-    );
-    $context  = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-    return trim($result);
-}
 
 ?>
 

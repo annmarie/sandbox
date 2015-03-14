@@ -10,15 +10,22 @@
 </head>
 <body>
 <div id="mainContent">
-<div class="navbar"><?php echo $pgObj->navbar; ?></div>
+<div class="breadcrumbs"><?php echo $pgObj->breadcrumbs; ?></div>
 
 <div class="well">
-<form action='' enctype='multipart/form-data' method='post'>
+<hr>
+
+<form action='' enctype='application/x-www-form-urlencoded' method='post'>
 <div> <input type="input" size="75" name="headline" placeholder="Name it!"> </div>
 <div> <textarea cols="75" rows="25" name="body">put your recipe here..</textarea> </div>
 <div> <textarea cols="75" rows="4" name="notes"></textarea> </div>
+<div> <input type="input" size="75" name="ingredient[]" placeholder="add ingredient to it!"> </div>
+<div> <input type="input" size="75" name="ingredient[]" placeholder="add ingredient to it!"> </div>
+<div> <input type="input" size="75" name="tag[]" placeholder="tag it!"> </div>
+<div> <input type="input" size="75" name="tag[]" placeholder="tag it!"> </div>
 <input type="submit" value="submit">
 </form>
+
 
 
 <hr>
@@ -28,4 +35,3 @@
 </body>
 </html>
 
-<hr>

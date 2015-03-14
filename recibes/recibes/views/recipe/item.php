@@ -1,8 +1,14 @@
 <?php 
 
-    $rcp = $pgObj->rcp;
-    $rcp->getIngredients();
-    $rcp->getTags();
+$rcp = new Recipe($pathObj->rcp_id);
+$rcp->getIngredients();
+$rcp->getTags();
+
+if (!$rcp->id) {
+    include("error.php");
+    exit();
+}
+
 
 ?>
 <html>
@@ -16,8 +22,7 @@
 <body>
 
 <div id="mainContent">
-
-<div class="navbar"><?php echo $pgObj->navbar; ?></div>
+<div class="breadcrumbs"><?php echo $pgObj->breadcrumbs; ?></div>
 
 <div class="well">
 <hr>
@@ -28,5 +33,4 @@
 </div>
 </body>
 </html>
-
 

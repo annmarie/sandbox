@@ -6,7 +6,7 @@ class AddRecipeFormRequest {
         $this->headline = htmlentities(@$_POST['headline']);
         $this->body = htmlentities(@$_POST['body']);
         $this->notes = htmlentities(@$_POST['notes']);
-        $this->ingredient = $this->parseArray('ingredients');
+        $this->ingredient = $this->parseArray('ingredient');
         $this->tag = $this->parseArray('tag');
         $this->is_valid = ($this->headline) ? 1 : 0;
     }
@@ -24,8 +24,8 @@ class AddRecipeFormRequest {
                 }
                 $rcp->getIngredients();
             }
-            if ($this->ingredient) {
-                foreach ($post->tag as $tag) {
+            if ($this->tag) {
+                foreach ($this->tag as $tag) {
                     $rcp->addTag($tag);
                 }
                 $rcp->getTags();
@@ -37,6 +37,21 @@ class AddRecipeFormRequest {
     private function parseArray($key) {
         if (!is_array(@$_POST[$key])) return array();
         return array_map("htmlentities", $_POST[$key]);
+    }
+}
+
+class SearchFormRequest {
+    function __construct() {
+        $this->phrase = htmlentities(@$_REQUEST['q']);
+        $this->page = htmlentities(@$_REQUEST['pg']);
+        if (!is_numeric($this->page)) $this->page = 1;
+        $this->is_valid = ($this->phrase) ? 1 : 0;
+    }
+
+    public function do_search() {
+        if (!$this->phrase) return;
+        $rcps = new Recipes();
+        return $rcps->searchKeywords($this->phrase);
     }
 }
 

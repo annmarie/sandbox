@@ -1,4 +1,5 @@
 <?php
+include("header.php");
 
 $rcpsObj = new Recipes();
 $recipes = $rcpsObj->all();
@@ -8,8 +9,9 @@ foreach($recipes as $rcp) {
     $rcp->getTags();
     $rcps[] = $rcp; 
 }
-
 $tpl = $rcps;
+
+echo json_encode($tpl);
 
 ?>
 

@@ -1,58 +1,45 @@
 <!DOCTYPE html>
 <?php
-
 require_once("conf/config.php");
 require_once("tools/Database.class.php");
+require_once("tools/PathParser.class.php");
 require_once("models.php");
 
 $dbObj = new Database($conf);
-$pgObj = new RecipePageObj($conf);
 
-if ($pgObj->pagetype) {
-    include("recipe/".$pgObj->pagetype.".php");
-}
+$urls = array(
+    "^$"  => "list",
+    "^/add/?$"  => "add",
+    "^/(?P<rcp_id>\d+)/?$" => "item",
+);
+
+$pathObj = new PathParser($urls);
+$pgObj = new PageObj($pathObj->view);
+if (!$pathObj->view) $pathObj->view = "error";
+
+include("views/recipe/".$pathObj->view.".php");
 
 exit();
 
-class RecipePageObj {
+class PageObj {
 
-    function __construct($conf) {
-        $this->setPageType();
-        $this->setNavBar();
+    function __construct($view) {
+        $this->view = $view;
+        $this->setBreadCrumbs();
     }
 
-    private function setNavBar() {
-        $bar = '<a href="/">Home</a>';
-        if ($this->pagetype == "list") {
-            $bar .= ' &gt; Recipes';
+    private function setBreadCrumbs() {
+        $bc = '<a href="/">Home</a>';
+        if ($this->view == "list") {
+            $bc .= ' &gt; Recipes';
         } else {
-            $bar .= ' &gt; <a href="/recipe.php">Recipes</a>';
+            $bc .= ' &gt; <a href="/recipe.php">Recipes</a>';
         }
-        if ($this->pagetype == "item") $bar .= ' &gt; Recipe';
-        $this->navbar = $bar;
+        if ($this->view == "item") $bc .= ' &gt; Recipe';
+        $this->breadcrumbs = $bc;
     }
 
-    private function setPageType() {
-        $pathkeys = $this::getPathKeys();
-        $key = @$pathkeys[1];
-        if (is_numeric($key)) {
-            $rcp = new Recipe($key);
-            if ($rcp->id) {
-                $this->rcp = $rcp;
-                $this->pagetype = "item";
-            }
-        } elseif ($key == "add") {
-            $this->pagetype = "add";
-        }
-        if (empty($this->pagetype)) {
-            $this->pagetype = "list";
-        }
-    }
-
-    private function getPathKeys() {
-        return explode("/", trim($_SERVER['REQUEST_URI'], "/"));
-    }
-}
+} // end class PageObj
 
 ?>
 
