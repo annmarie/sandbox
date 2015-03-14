@@ -7,7 +7,7 @@ class ApiCalls {
     }
 
     public function addIt($data) {
-        $url = rtrim($this->baseurl, "/") . '/api.php/recipe/add/';
+        $url = rtrim($this->baseurl, "/") . '/recipe.php/api/add/';
         if ((!$data) or (!is_array($data))) return;
         $options = array(
             'http' => array(
@@ -24,14 +24,14 @@ class ApiCalls {
     public function getIt($id) {
         $id = (int)trim($id);
         if (!$id) return;
-        $url = rtrim($this->baseurl, "/") . '/api.php/recipe/get/'.$id;
+        $url = rtrim($this->baseurl, "/") . '/recipe.php/api/get/'.$id;
         $result = file_get_contents($url, false);
         return trim($result);
     }
 
     public function searchIt($phrase, $page=1) {
         if (!$phrase) return;
-        $url = rtrim($this->baseurl, "/") . '/api.php/recipe/search/?q='.$phrase."&pg=".$page;
+        $url = rtrim($this->baseurl, "/") . '/recipe.php/api/search/?q='.$phrase."&pg=".$page;
         $result = file_get_contents($url, false);
         return trim($result);
     }

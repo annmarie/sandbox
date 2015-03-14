@@ -1,16 +1,4 @@
-<?php 
-
-$rcp = new Recipe($pathObj->rcp_id);
-$rcp->getIngredients();
-$rcp->getTags();
-
-if (!$rcp->id) {
-    include("error.php");
-    exit();
-}
-
-
-?>
+<!DOCTYPE html>
 <html>
 <head>
   <?php include("metatags.php"); ?>
@@ -26,11 +14,10 @@ if (!$rcp->id) {
 
 <div class="well">
 <hr>
-<pre><?php print_r($rcp); ?></pre>
+<pre><?php print_r($pgObj->rcp); ?></pre>
 <hr>
 </div>
 
 </div>
 </body>
 </html>
-

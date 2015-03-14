@@ -1,7 +1,6 @@
 <?php
 require_once("tools/Stopwords.class.php");
 
-
 class Recipes {
 
     public function __construct($page=1) {
@@ -548,6 +547,4 @@ class Image {
 
     private function db() { global $dbObj; return $dbObj; }
 }
-
-?>
 

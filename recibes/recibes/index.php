@@ -14,7 +14,7 @@
 <head>
 <body>
 <div id="mainContent">
-<div class="navbar">Home</div>
+<div class="breadcrumbs">Home</div>
 
 </div>
 

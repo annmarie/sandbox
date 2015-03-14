@@ -1,10 +1,4 @@
-<?php
-
-$rcpsObj = new Recipes();
-$recipes = $rcpsObj->all();
-$rcpLinks = array_map("makeRecipeLink", $recipes);
-
-?>
+<!DOCTYPE html>
 <html>
 <head>
   <?php include("metatags.php"); ?>
@@ -20,7 +14,10 @@ $rcpLinks = array_map("makeRecipeLink", $recipes);
 <hr>
 
 <ul>
-<?php foreach($rcpLinks as $link) echo "<li>".$link."</li>"; ?>
+<?php 
+    $rcpLinks = array_map("makeRecipeLink", $pgObj->recipes);
+    foreach($rcpLinks as $link) echo "<li>".$link."</li>"; 
+?>
 </ul>
 
 <hr>
@@ -29,9 +26,7 @@ $rcpLinks = array_map("makeRecipeLink", $recipes);
 </body>
 </html>
 <?php
-
-function makeRecipeLink($rcp) {
-    return "<a href='/recipe.php/".$rcp->id."/'>".$rcp->headline."</a>";
-};
-
+    function makeRecipeLink($rcp) {
+        return "<a href='/recipe.php/".$rcp->id."/'>".$rcp->headline."</a>";
+    }
 ?>
