@@ -21,7 +21,7 @@ $urls = array(
 );
 
 $pathObj = new PathParser($urls);
-if (!$pathObj->view) {
+if (!@$pathObj->view) {
     $pathObj->view = "error";
 }
 $pathObj->breadcrumbs = setBreadCrumbs($pathObj);
