@@ -1,19 +1,4 @@
-<html>
-<body>
-<form action='/api.php/recipe/add/' enctype='application/x-www-form-urlencoded' method='post'>
-<div> <input type="input" size="75" name="headline" placeholder="Name it!"> </div>
-<div> <input type="input" size="75" name="ingredient[]" placeholder="add ingredient to it!"> </div>
-<div> <input type="input" size="75" name="ingredient[]" placeholder="add ingredient to it!"> </div>
-<div> <input type="input" size="75" name="tag[]" placeholder="tag it!"> </div>
-<div> <input type="input" size="75" name="tag[]" placeholder="tag it!"> </div>
-<input type="submit" value="submit">
-</form>
-</body>
-</html>
-
-
 <?php
-exit();
 include('../sdk/RecibesApi.php');
 
 $baseurl = "http://recibes-vagrant.local/";
@@ -36,4 +21,3 @@ print_r($results);
 exit();
 
 ?>
-

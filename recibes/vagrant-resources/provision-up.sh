@@ -9,6 +9,7 @@ cp /var/www/vagrant-resources/my.cnf /etc/mysql/my.cnf
 cp /var/www/vagrant-resources/apache/default /etc/apache2/sites-available/default
 cp /var/www/vagrant-resources/apache/default-ssl /etc/apache2/sites-available/default-ssl
 cp /var/www/vagrant-resources/site-files/gulpfile.js /var/www/gulpfile.js
+rm -f /var/www/index.html
 
 chmod -R 775 /var/www/*
 

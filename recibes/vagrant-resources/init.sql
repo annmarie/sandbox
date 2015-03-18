@@ -15,7 +15,7 @@ CREATE TABLE recipe (
   updated TIMESTAMP
 ) ENGINE=MyISAM;
 
-CREATE INDEX headline_ix ON recipe (headline);
+CREATE INDEX rcp_headline_ix ON recipe (rcp_headline);
 
 CREATE TRIGGER recipe_create BEFORE INSERT ON `recipe`
 FOR EACH ROW SET NEW.updated = NOW();
