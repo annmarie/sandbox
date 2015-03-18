@@ -1,4 +1,5 @@
 <?php
+require_once("links.php");
 
 class Views { 
 
@@ -95,7 +96,10 @@ class Views {
 
 
     function render_tmpl($filepath) {
-        extract(array("pgObj" =>  $this->pgObj));
+        $links = new Links();
+        $vars = array("pgObj" => $this->pgObj,
+                      "links" => $links);
+        extract($vars);
         ob_start();
         require($filepath);
         $contents = ob_get_contents(); 

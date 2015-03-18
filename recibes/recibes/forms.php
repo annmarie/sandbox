@@ -42,16 +42,29 @@ class AddRecipeFormRequest {
 
 class SearchFormRequest {
     function __construct() {
-        $this->phrase = htmlentities(@$_REQUEST['q']);
+        $this->qterms = htmlentities(@$_REQUEST['q']);
         $this->page = htmlentities(@$_REQUEST['pg']);
         if (!is_numeric($this->page)) $this->page = 1;
         $this->is_valid = ($this->phrase) ? 1 : 0;
     }
 
     public function do_search() {
-        if (!$this->phrase) return;
+        if (!$this->qterms) return;
         $rcps = new Recipes();
-        return $rcps->searchKeywords($this->phrase);
+        return $rcps->searchKeywords($this->qterms);
     }
+
+    public function do_tags_search() {
+        if (!$this->qterms) return;
+        $rcps = new Recipes();
+        return $rcps->searchTags($this->qterms);
+    }
+
+    public function do_ingredients_search() {
+        if (!$this->qterms) return;
+        $rcps = new Recipes();
+        return $rcps->searchIngredients($this->qterms);
+    }
+
 }
 

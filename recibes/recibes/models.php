@@ -77,7 +77,6 @@ class Recipes {
 
     public function searchKeywords($phrase, $page=1) {
         if (!$phrase) return;
-        preg_match_all("#\b[\w+]+\b#",$phrase,$words);
         $q ="
             SELECT
                 recipe.id, 
@@ -91,6 +90,7 @@ class Recipes {
             AND
                 word.id = occurrence.word_id
         ";
+        preg_match_all("#\b[\w+]+\b#",$phrase,$words);
         for( $i = 0; $i<count($words); $i++ ) {
             for( $j = 0; $j<count($words[$i]); $j++ ) {
                 $cur_word = addslashes( strtolower($words[$i][$j]) );
