@@ -34,11 +34,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :hostmanager
 
   config.vm.provision "shell" do |s|
-    s.path = "vagrant-resources/provision-setup.sh"
+    s.path = "dev/vagrant/provision-setup.sh"
   end
 
   config.vm.provision "shell", :args => "background", run: "always" do |s|
-    s.path = "vagrant-resources/provision-up.sh"
+    s.path = "dev/vagrant/provision-up.sh"
   end
 
   config.vm.provider "virtualbox" do |vb|
