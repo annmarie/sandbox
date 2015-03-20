@@ -10,13 +10,16 @@
 <div id="mainContent">
 <div class="breadcrumbs"><?php echo $pgObj->breadcrumbs; ?></div>
 <div class="well">
-<a href="/recipe/add">add a recipe</a>
+<a href="<?php echo $links::recipe_add(); ?>">add a recipe</a>
 <hr>
 
 <ul>
 <?php 
-    $rcpLinks = array_map("makeRecipeLink", $pgObj->recipes);
-    foreach($rcpLinks as $link) echo "<li>".$link."</li>"; 
+    foreach($pgObj->recipes as $rcp) {
+        echo '<li><a href="'.$links::recipe_item($rcp->id).'">';
+        echo $rcp->headline;
+        echo '</a></li>';
+    }
 ?>
 </ul>
 
@@ -25,8 +28,4 @@
 </div>
 </body>
 </html>
-<?php
-    function makeRecipeLink($rcp) {
-        return "<a href='/recipe/".$rcp->id."'>".$rcp->headline."</a>";
-    }
-?>
+

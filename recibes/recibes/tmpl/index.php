@@ -21,7 +21,7 @@
 </div>
 
 <div class="menu">
-<a href="/recipe/all">Recipes</a>
+<a href="<?php echo $links::recipe_all(); ?>">Recipes</a>
 </div>
 
 

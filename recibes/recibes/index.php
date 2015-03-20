@@ -9,7 +9,6 @@ require_once("forms.php");
 $dbObj = new Database($conf);
 
 $urls = array(
-    #-- site urls --#
     array("^/?$", "index"),
     #-- recipe urls --#
     array("^/recipe/add/?$", "add"),

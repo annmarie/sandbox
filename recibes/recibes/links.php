@@ -2,15 +2,21 @@
 
 class Links {
 
-    public function recipe($id=0) {
-        if ($id) return $id."/";
+    public static function recipe_all() {
+        return "/recipe/all";
     }
 
-    public function tag($tag) {
-        if ($id) return $id."/";
+    public static function recipe_add() {
+        return "/recipe/add";
     }
 
+    public static function recipe_item($id=0) {
+        return ($id) ? "/recipe/".$id : "";
+    }
 
+#    public function tag($tag) {
+#        if ($id) return $id."/";
+#    }
 
 }
 
