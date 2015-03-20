@@ -1,10 +1,11 @@
+FN=/var/www/dev/db/mysql/init.sql
 
-if [ ! -z `ls $1` ]; then
+if [ ! -z `ls $FN` ]; then
     # Create a database with that name
-    mysqladmin -u root -h 172.12.12.12 -proot -f drop recibes
-    mysqladmin -u root -h 172.12.12.12 -proot create recibes
-    
+    mysqladmin -u root -proot -f drop recibes
+    mysqladmin -u root -proot create recibes
+
     # Import the SQL into new database
-    mysql -u root -f -h 172.12.12.12 -proot recibes < $1 
-fi                      
+    mysql -u root -f -proot recibes < $FN
+fi
 
