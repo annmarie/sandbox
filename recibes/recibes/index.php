@@ -11,9 +11,10 @@ $dbObj = new Database($conf);
 $urls = array(
     #-- site urls --#
     array("^/?$", "index"),
-    array("^/add/?$", "add"),
-    array("^/all/?$", "items"),
-    array("^/(?P<rcp_id>\d+)/?$", "item"),
+    #-- recipe urls --#
+    array("^/recipe/add/?$", "add"),
+    array("^/recipe/all/?$", "items"),
+    array("^/recipe/(?P<rcp_id>\d+)/?$", "item"),
     #-- api urls --#
     array("^/api/add/?$", "api_add"),
     array("^/api/get/all/?$", "api_list"),
@@ -44,7 +45,7 @@ function setBreadCrumbs($pathObj) {
         if ($pathObj->view == "items") {
             $bc .= ' &gt; Recipes';
         } else {
-            $bc .= ' &gt; <a href="/all">Recipes</a>';
+            $bc .= ' &gt; <a href="/recipe/all">Recipes</a>';
         }
         if ($pathObj->view == "item") $bc .= ' &gt; Recipe';
     }

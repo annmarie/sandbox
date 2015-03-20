@@ -10,7 +10,7 @@
 <div id="mainContent">
 <div class="breadcrumbs"><?php echo $pgObj->breadcrumbs; ?></div>
 <div class="well">
-<a href="/add">add a recipe</a>
+<a href="/recipe/add">add a recipe</a>
 <hr>
 
 <ul>
@@ -27,6 +27,6 @@
 </html>
 <?php
     function makeRecipeLink($rcp) {
-        return "<a href='/".$rcp->id."/'>".$rcp->headline."</a>";
+        return "<a href='/recipe/".$rcp->id."'>".$rcp->headline."</a>";
     }
 ?>

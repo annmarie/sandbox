@@ -21,7 +21,7 @@
 </div>
 
 <div class="menu">
-<a href="/all">Recipes</a>
+<a href="/recipe/all">Recipes</a>
 </div>
 
 
