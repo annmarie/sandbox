@@ -21,7 +21,7 @@
 </div>
 
 <div class="menu">
-<a href="/recipe.php/all">Recipes</a>
+<a href="/all">Recipes</a>
 </div>
 
 

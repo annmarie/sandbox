@@ -8,7 +8,7 @@ class PathParser {
 
     public function setView($urls) {
         $requri = strtolower(strtok($_SERVER['REQUEST_URI'], "?"));
-        $requri = substr($requri, strlen($_SERVER['SCRIPT_NAME']));
+        #$requri = substr($requri, strlen($_SERVER['SCRIPT_NAME']));
         foreach($urls as $urlinfo) {
             list($path, $view) = $urlinfo;
             if (preg_match("#$path#", $requri, $matches)) {
