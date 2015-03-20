@@ -8,10 +8,14 @@ class Views {
     }
 
     public function index() {
+        $this->render_tmpl("tmpl/index.php");
+    }
+
+    public function items() {
         $rcpsObj = new Recipes();
         $recipes = $rcpsObj->all();
         $this->pgObj->recipes = $recipes;
-        $this->render_tmpl("tmpl/index.php");
+        $this->render_tmpl("tmpl/items.php");
     }
 
     public function item() {

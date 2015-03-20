@@ -5,28 +5,27 @@
   <?php include("css.php"); ?>
   <?php include("js.php"); ?>
   <title>Recibes</title>
-</head>
+  <style>
+    .menu { 
+        font-size:24px;
+        padding-top:10px;
+        padding-bottom:10px;
+        padding-left:25px;
+    }
+  </style>
+<head>
 <body>
 <div id="mainContent">
 <div class="breadcrumbs"><?php echo $pgObj->breadcrumbs; ?></div>
-<div class="well">
-<a href="/recipe.php/add/">add a recipe</a>
-<hr>
 
-<ul>
-<?php 
-    $rcpLinks = array_map("makeRecipeLink", $pgObj->recipes);
-    foreach($rcpLinks as $link) echo "<li>".$link."</li>"; 
-?>
-</ul>
-
-<hr>
 </div>
+
+<div class="menu">
+<a href="/recipe.php/all">Recipes</a>
+</div>
+
+
 </div>
 </body>
 </html>
-<?php
-    function makeRecipeLink($rcp) {
-        return "<a href='/recipe.php/".$rcp->id."/'>".$rcp->headline."</a>";
-    }
-?>
+

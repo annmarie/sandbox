@@ -9,10 +9,12 @@ require_once("forms.php");
 $dbObj = new Database($conf);
 
 $urls = array(
-    array("^$", "index"),
+    #-- site urls --#
+    array("^/?$", "index"),
     array("^/add/?$", "add"),
+    array("^/all/?$", "items"),
     array("^/(?P<rcp_id>\d+)/?$", "item"),
-
+    #-- api urls --#
     array("^/api/add/?$", "api_add"),
     array("^/api/get/all/?$", "api_list"),
     array("^/api/get/(?P<rcp_id>\d+)/?$", "api_item"),
@@ -35,13 +37,17 @@ exit();
 
 
 function setBreadCrumbs($pathObj) {
-    $bc = '<a href="/">Home</a>';
-    if ($pathObj->view == "list") {
-        $bc .= ' &gt; Recipes';
+    if ($pathObj->view == "index") {
+        $bc = 'Home';
     } else {
-        $bc .= ' &gt; <a href="/recipe.php">Recipes</a>';
+        $bc = '<a href="/recipe.php">Home</a>';
+        if ($pathObj->view == "items") {
+            $bc .= ' &gt; Recipes';
+        } else {
+            $bc .= ' &gt; <a href="/recipe.php/all">Recipes</a>';
+        }
+        if ($pathObj->view == "item") $bc .= ' &gt; Recipe';
     }
-    if ($pathObj->view == "item") $bc .= ' &gt; Recipe';
     return $bc;
 }
 
