@@ -4,5 +4,5 @@ DBP=root
 DBN=recibes
 FN=recibesdb.sql
 
-mysqldump -h $DBH -u $DBU -p$DBP -c --add-drop-table $DBN > $FN  
+mysqldump -h $DBH -u $DBU -p$DBP -c --add-drop-table $DBN > $FN
 

@@ -1,5 +1,6 @@
 <?php
-include('../sdk/RecibesApi.php');
+
+include('../../sdk/RecibesApi.php');
 
 $baseurl = "http://recibes-vagrant.local/";
 $rcpAPI = new Recibes\ApiCalls($baseurl);
@@ -20,4 +21,4 @@ print_r($results);
 
 exit();
 
-?>
+
