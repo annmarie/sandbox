@@ -10,8 +10,6 @@ cp /var/www/dev/db/mysql/my.cnf /etc/mysql/my.cnf
 cp /var/www/dev/apache/default /etc/apache2/sites-available/default
 cp /var/www/dev/apache/default-ssl /etc/apache2/sites-available/default-ssl
 cp /var/www/dev/apache/envvars /etc/apache2/envvars
-cp /var/www/dev/htdocs/robots.txt /var/www/recibes/
-cp /var/www/dev/htdocs/.htaccess /var/www/recibes/
 rm -f /var/www/index.html
 
 chmod -R 775 /var/www/*

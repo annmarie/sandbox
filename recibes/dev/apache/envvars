@@ -23,7 +23,7 @@ export APACHE_LOG_DIR=/var/log/apache2$SUFFIX
 
 export ENVIRONMENT='vagrant'
 export WEBROOT='/var/www/'
-export DOMAIN='inc-vagrant.local'
+export DOMAIN='recibes-vagrant.local'
 
 ## The locale used by some modules like mod_dav
 export LANG=C
