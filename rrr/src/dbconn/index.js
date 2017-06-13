@@ -1,5 +1,4 @@
-// - database tools - //
-const mysql = require('./connections').mysql
+const mysql = require('../../databases').mysql
 const Q = require('q')
 
 module.exports = {

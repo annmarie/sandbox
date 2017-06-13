@@ -1,0 +1,12 @@
+$main-background-color: #7777aa;
+
+.topbar {
+  padding: 20px;
+  background: $main-background-color;
+  color: #fff;
+  font-family: arial;
+
+  h1 {
+    text-transform: uppercase;
+  }
+}
