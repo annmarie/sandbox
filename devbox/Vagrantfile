@@ -1,0 +1,85 @@
+# encoding: utf-8
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+#----- config ----#
+
+# Memorable name for your
+VM_NAME = 'devbox'
+
+# Box / OS
+VAGRANT_BOX = 'ubuntu/trusty64'
+
+# VM User — 'vagrant' by default
+VM_USER = 'vagrant'
+
+# Host folder to sync
+HOST_PATH = '.'
+
+# IP Address for the host only network, change it to anything you like
+# but please keep it within the IPv4 private network range
+IP_ADDRESS = "172.3.3.1"
+
+#----- setup ----#
+
+Vagrant.configure(2) do |config|
+  # Vagrant box from Hashicorp
+  config.vm.box = VAGRANT_BOX
+
+  # Actual machine name
+  config.vm.hostname = VM_NAME
+
+  # Forward mysql and redis ports
+  config.vm.network "forwarded_port", guest: 3306, host: 6667, auto_correct: true
+  config.vm.network "forwarded_port", guest: 6379, host: 6679, auto_correct: true
+
+  # Set VM name in Virtualbox
+  config.vm.provider "virtualbox" do |v|
+    v.name = VM_NAME
+    v.memory = 2048
+  end
+
+  # Disable default Vagrant folder, use a unique path per project
+  config.vm.synced_folder ".", "/home/"+VM_USER+"/"+VM_NAME, create: true, type: "rsync", rsync__auto: true, rsync__args: ["--verbose", "--archive", "-z", "--copy-links", "--rsync-path='sudo rsync'", "--perms"], rsync__exclude: [".git/", ".vagrant/", "Vagrantfile"]
+
+  # Use hostonly network with a static IP Address and enable
+  # hostmanager so we can have a custom domain for the server
+  # by modifying the host machines hosts file
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.vm.define VM_NAME do |node|
+    node.vm.hostname = VM_NAME + ".local"
+    node.vm.network :private_network, ip: IP_ADDRESS
+    node.hostmanager.aliases = [ "www." + VM_NAME + ".local" ]
+  end
+  config.vm.provision :hostmanager
+
+  # Install mysql and redis servers
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    apt-get install -y git
+    curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash - 
+    apt-get install -y nodejs
+    apt-get install -y build-essential
+    npm install -g npm
+    npm install -g webpack
+    npm install -g yarn
+    npm install -g pm2
+    apt-get install -y curl
+    apt-get install -y vim
+    apt-get install -y memcache
+    apt-get install -y nginx
+    apt-get install -y redis-server
+    debconf-set-selections <<< "mysql-server-5.6 mysql-server/root_password password root"
+    debconf-set-selections <<< "mysql-server-5.6 mysql-server/root_password_again password root"
+    apt-get install -qq mysql-server-5.6
+    MYSQL=`which mysql`
+    Q1="GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;"
+    Q2="FLUSH PRIVILEGES;"
+    SQL="${Q1}${Q2}"
+    $MYSQL -uroot -proot -e "$SQL"
+    apt-get update
+    apt-get upgrade -y
+    apt-get autoremove -y
+  SHELL
+end
