@@ -1,5 +1,5 @@
 // - Users Collection - //
-const userdb = require('../dbconn').sitedb
+const sitedb = require('../dbconn').sitedb
 const User = require('../models/user')
 const Q = require('q')
 const _ = require('lodash')
@@ -54,7 +54,7 @@ class Users {
 
   _queryMany(query, qargs) {
     const q = Q.defer()
-    userdb.query(query, qargs).then(rows => {
+    sitedb.query(query, qargs).then(rows => {
       if (!rows.length) {
         q.reject("no records found")
       } else {
@@ -67,7 +67,7 @@ class Users {
 
   _queryOne(query, qargs) {
     const q = Q.defer()
-    userdb.query(query, qargs).then(rows => {
+    sitedb.query(query, qargs).then(rows => {
       const data = _.head(rows)
       if (!data)
         q.reject("record not found")

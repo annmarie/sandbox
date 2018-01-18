@@ -1,6 +1,6 @@
 // - User Model - //
 const bcrypt = require('bcrypt-nodejs')
-const userdb = require('../dbconn').sitedb
+const sitedb = require('../dbconn').sitedb
 const Q = require('q')
 const _ = require('lodash')
 const hashids = require('../hashids')
@@ -41,7 +41,7 @@ class User {
       const query = "SELECT * FROM user WHERE id=?"
       const qargs = [hashids.decode(this.id)]
 
-      userdb.query(query, qargs).then(rows => {
+      sitedb.query(query, qargs).then(rows => {
         const rset = _.head(rows)
         if (!rset)
           q.reject("record not found")
@@ -65,7 +65,7 @@ class User {
       const query = "INSERT INTO user (email, password_digest, admin) VALUES (?, ?, ?)"
       const qargs = [this.email, this.password_digest, this.admin, hashids.decode(this.id)]
 
-      return userdb.query(query, qargs).then(rows => {
+      return sitedb.query(query, qargs).then(rows => {
         this.id = hashids.encode(_.get(rows, "insertId"))
         return select()
       })
@@ -90,7 +90,7 @@ class User {
         " WHERE id=? "
       const qargs = [email, admin, pswd, hashids.decode(this.id)]
 
-      return userdb.query(query, qargs).then(() => select())
+      return sitedb.query(query, qargs).then(() => select())
     }
 
     this.processPassword()

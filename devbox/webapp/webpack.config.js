@@ -2,9 +2,9 @@
 const path = require('path');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'app'),
+  entry: path.resolve(__dirname, 'static/app'),
   output: {
-    path: path.resolve(__dirname, 'gen'),
+    path: path.resolve(__dirname, 'static/gen'),
     filename: "bundle.js"
   },
   module: {

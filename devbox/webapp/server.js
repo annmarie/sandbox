@@ -20,7 +20,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // set logging
-const logDir = path.join(__dirname, 'log')
+const logDir = path.join(__dirname, '../log')
 fs.existsSync(logDir) || fs.mkdirSync(logDir)
 app.use(morgan('combined', {
   stream: rfs('access.log', { interval: '1d', path: logDir })
@@ -48,11 +48,11 @@ app.use(passport.session())
 app.use(flash())
 
 // favicon.ico
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+app.use(favicon(path.join(__dirname, '/static/public', 'favicon.ico')))
 
 // set routes
-app.use('/', express.static(path.join(__dirname, '/public')))
-app.use('/gen', express.static(path.join(__dirname, '/gen')))
+app.use('/', express.static(path.join(__dirname, '/static/public')))
+app.use('/gen', express.static(path.join(__dirname, '/static/gen')))
 require('./src/routes')(app, passport, express)
 
 // listen

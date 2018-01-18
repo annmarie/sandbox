@@ -1,4 +1,4 @@
-# Node Web Server 
+# Node Web Server
 
   node app using passport with mysql and redis
 
@@ -16,7 +16,4 @@ $ node server.js
 Notes
 -------
 - need to have a redis server running at `redis://localhost:6379`
-- setup mysql db: use schema in `database/devboxdb.sql`
 - create new user: `node bin/createUser`
-
-

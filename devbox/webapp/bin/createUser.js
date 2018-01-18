@@ -1,4 +1,4 @@
-const User = require('../src/models/user')
+const User = require('../webapp/src/models/user')
 const Q = require('q')
 
 const prompt = require('prompt');

@@ -18,7 +18,7 @@ HOST_PATH = '.'
 
 # IP Address for the host only network, change it to anything you like
 # but please keep it within the IPv4 private network range
-IP_ADDRESS = "172.3.2.1"
+IP_ADDRESS = "172.11.12.13"
 
 #----- setup ----#
 
