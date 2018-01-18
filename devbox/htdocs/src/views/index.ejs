@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DevBox</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div data-target="main" class="container">
+  <div class="topbar text-center">
+    <h1> DAR Report API </h1>
+    <div data-target="auth-display">
+      <!-- auth display -->
+      <div data-target="is-auth-display" class="hidden">
+        <p data-target="auth-user-email"><p>
+        <a href="/logout"><button><span class="fa fa-user"></span> Logout</button></a>
+      </div>
+      <!-- notauth display -->
+       <div data-target="not-auth-display" class="hidden">
+        <a href="/login"><button><span class="fa fa-user"></span> Login</button></a>
+       </div>
+    </div>
+  </div>
+</div>
+
+<script src="/gen/bundle.js"></script>
+</body>
+</html>

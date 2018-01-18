@@ -27,13 +27,3 @@ vagrant destroy  - destroys the box
 vagrant halt - shutdown the box
 
 vagrant ssh - ssh to the box
-
-SET UP VAGRANT BOX
-======================
-
-* vagrant up
-* vagrant ssh
-* sudo vi /etc/mysql/my.cnf  <-- set bind 0.0.0.0
-* sudo vi /etc/redis/redis.conf <-- set bind 0.0.0.0
-* need to edit nginx conf to point to node webserver
-* exit
