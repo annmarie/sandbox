@@ -1,0 +1,28 @@
+startup_message off
+autodetach on
+shelltitle "$ |bash"
+logfile %H_%Y-%m-%d-%n.screenlog
+hardstatus off
+# the next 2 lines are set up to use F1 and F2 to move one screen forward or backward (respectively) through your screen session.
+bindkey -k k1 prev
+bindkey -k k2 next
+# use visual bell
+vbell off 
+# set a big scrolling buffer
+defscrollback 50000
+# Set the caption on the bottom line
+caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= @%H - %D %d %M - %C"
+#caption always "%{= Kw}%:%{= Bw}%?  %-=   screen@%H - %LD %d %LM - %C"
+#hardstatus alwayslastline "%{= kW}%-w%{= BW}%n %t%{-}%+w %-="
+# Make shift-PgUp and shift-PgDn work like they do in xterm.  (Note that this
+# requires xterm to be configured to pass those keys through, and not try to
+# act on them itself.)
+bindkey "^[[5;2~" eval "copy" "stuff ^u"
+bindkey -m "^[[5;2~" stuff ^u
+bindkey -m "^[[6;2~" stuff ^d
+bindkey -d -k kb stuff "\010"
+
+
+termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
+termcapinfo screen 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
+termcapinfo xterm-color 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'

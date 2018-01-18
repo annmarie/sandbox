@@ -1,0 +1,12 @@
+[color]
+	ui = auto
+[alias]
+	ci = commit
+	co = checkout
+	st = status
+	br = branch
+[user]
+	name = AnnMarie Conway
+	email = annmarie.conway@digitalassetresearch.com
+[url "https://"]
+	insteadOf = git://
